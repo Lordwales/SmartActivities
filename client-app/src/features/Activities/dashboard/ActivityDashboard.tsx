@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { Grid} from 'semantic-ui-react';
 import {IActivity} from '../../../app/models/activity'
 import ActivityList from './ActivityList';
@@ -14,7 +14,9 @@ interface IProps{
     setSelectedActivity:(activity:IActivity|null)=>void;
     createActivity:(activity:IActivity)=>void;
     EditActivity:(activity:IActivity)=>void
-    deleteActivity: (id:string)=>void;
+    deleteActivity: (e:SyntheticEvent<HTMLButtonElement >, id:string)=>void;
+    submitting:boolean
+    target:string
 }
 const ActivityDashboard: React.FC<IProps> = ({
     activities,
@@ -25,12 +27,20 @@ const ActivityDashboard: React.FC<IProps> = ({
     setSelectedActivity,
     createActivity,
     EditActivity,
-    deleteActivity
+    deleteActivity,
+    submitting,
+    target
 }) => {
     return (
         <Grid>
             <Grid.Column width={10}>
-                <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
+                <ActivityList
+                 activities={activities} 
+                 selectActivity={selectActivity}
+                  deleteActivity={deleteActivity} 
+                  submitting={submitting}
+                  target={target}
+                  />
                 {/* <List>
                     {activities.map((activity)=>(
                         // <li key={weatherforecast.date}>{weatherforecast.summary}</li>  
@@ -52,6 +62,7 @@ const ActivityDashboard: React.FC<IProps> = ({
                  activity={selectedActivity!}
                  createActivity={createActivity}
                  EditActivity = {EditActivity}
+                 submitting={submitting}
                  
                  ></ActivityForm> } 
                 
