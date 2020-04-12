@@ -16,7 +16,7 @@ const ActivityListItem: React.FC <{activity: IActivity}> = ({activity}) => {
                             <Item.Description>
                                 Hosted by Bob
                         </Item.Description>
-                        </Item.Content>
+                        </Item.Content> 
                     </Item>
                 </Item.Group>
                 
