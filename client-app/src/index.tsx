@@ -1,3 +1,4 @@
+import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router} from 'react-router-dom';
@@ -11,6 +12,7 @@ import ScrollToTop from './app/layout/ScrollToTop';
 import 'mobx-react-lite/batchingForReactDom'
 import dateFnsLocalizer from 'react-widgets-date-fns';
 
+
 dateFnsLocalizer() 
 
 export const history = createBrowserHistory();
@@ -18,7 +20,7 @@ export const history = createBrowserHistory();
 ReactDOM.render(
     <Router history ={history}>
     <ScrollToTop>
-        <App />
+        <App /> 
     </ScrollToTop>
         
     </Router>,

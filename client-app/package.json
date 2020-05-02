@@ -19,6 +19,7 @@
     "mobx": "^5.15.4",
     "mobx-react-lite": "^2.0.5",
     "react": "^16.13.0",
+    "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.0",
     "react-final-form": "^6.4.0",
     "react-router-dom": "^5.1.2",
@@ -49,7 +50,8 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie 11"
     ]
   },
   "devDependencies": {

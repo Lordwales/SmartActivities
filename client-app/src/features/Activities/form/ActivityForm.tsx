@@ -34,18 +34,23 @@ interface DetailParams{
 
 const ActivityForm: React.FC <RouteComponentProps<DetailParams>>= ({match, history}) => {
     
-    const rootStore = useContext(RootStoreContext)  ;  
+    const rootStore = useContext(RootStoreContext);  
     const {createActivity,editActivity,submitting, loadActivity} = rootStore.activityStore;
     
     
 
     
     const [activity,setActivity] = useState(new ActivityFormValues());
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if(match.params.id){
+            setLoading(true);
             loadActivity(match.params.id)
-            .then((activity) => setActivity(new ActivityFormValues(activity)));
+            .then(activity => {
+                setActivity(new ActivityFormValues(activity));
+              })
+              .finally(() => setLoading(false));
         }
 
         // return () =>{
@@ -80,8 +85,8 @@ const ActivityForm: React.FC <RouteComponentProps<DetailParams>>= ({match, histo
                         validate={validate}
                         initialValues = {activity}
                         onSubmit ={handleFinalFormSubmit}
-                        render = {({handleSubmit,invalid,pristine}) =>(
-                            <Form onSubmit={handleSubmit}>
+                        render = {({handleSubmit}) =>(
+                            <Form onSubmit={handleSubmit} loading={loading}>
                                 <Field
                                     name='title'
                                     placeholder='Title'
@@ -135,6 +140,7 @@ const ActivityForm: React.FC <RouteComponentProps<DetailParams>>= ({match, histo
 
                                 <Button 
                                 loading={submitting} 
+                                disabled ={loading}
                                 floated='right' 
                                 positive 
                                 type='submit' 
