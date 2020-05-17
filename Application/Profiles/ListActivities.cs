@@ -69,7 +69,7 @@ namespace Application.Profiles
                 }
 
                 return activitiesToReturn;
-            }
+            } 
         }
     }
 }
